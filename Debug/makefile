@@ -60,8 +60,8 @@ all: main-build
 main-build: TriacControl.elf secondary-outputs
 
 # Tool invocations
-TriacControl.elf TriacControl.map: $(OBJS) $(USER_OBJS) D:\didi\STM32_Workspace\TriacControl\STM32F030C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TriacControl.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"D:\didi\STM32_Workspace\TriacControl\STM32F030C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TriacControl.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TriacControl.elf TriacControl.map: $(OBJS) $(USER_OBJS) C:\Users\PC\Documents\GitHub\TriacControl\STM32F030C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TriacControl.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\PC\Documents\GitHub\TriacControl\STM32F030C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TriacControl.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

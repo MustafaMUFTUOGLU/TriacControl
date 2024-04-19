@@ -79,6 +79,8 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim){
 		HAL_GPIO_WritePin(TRIAC_OUT_GPIO_Port,TRIAC_OUT_Pin,0);
 	} else if (htim == &htim1 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2){
 		HAL_GPIO_WritePin(TRIAC_OUT_GPIO_Port,TRIAC_OUT_Pin,1);
+		TIM1->CCR2 = TriacValue + 100;
+		TIM1->CCR1 = TriacValue ;
 	}
 }
 
@@ -86,8 +88,7 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim){
  * val : max -> 1200 , min ->  0
  */
 void TriacControlSet(uint32_t val) {
-	TIM1->CCR2 = val + 100;
-	TIM1->CCR1 = val ;
+	TriacValue = val;
 }
 
 /* USER CODE END 0 */
@@ -131,7 +132,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  TriacControlSet(TriacValue);
+	  TriacControlSet(800);
+	  HAL_Delay(5000);
+	  TriacControlSet(300);
+	  HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
